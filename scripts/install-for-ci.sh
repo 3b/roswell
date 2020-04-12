@@ -178,6 +178,7 @@ case "$LISP" in
     cmu|cmucl|cmu-bin)
         apt_unless_installed libc6-i386
         apt_unless_installed libc6-dev-i386
+        apt_unless_installed gcc-multilib
         LISP=cmu-bin
         ;;
     # 'ccl' is an alias for 'ccl-bin'
