@@ -110,6 +110,10 @@ if which sudo 2>&1 >/dev/null; then
     SUDO=sudo
 fi
 
+if uname -s | grep -E "MSYS|MINGW" >/dev/null; then
+    export PATH=$ROSWELL_INSTALL_DIR/bin:$PATH
+fi
+
 install_roswell_bin () {
     if uname -s | grep -E "MSYS_NT|MINGW64" >/dev/null; then
         if [ $ROSWELL_BRANCH = release ]; then
@@ -143,11 +147,7 @@ install_roswell_bin () {
 
 install_roswell_src () {
     if ! which ros >/dev/null; then
-        if uname -s | grep -E "MSYS|MINGW" >/dev/null; then
-           pacman -S msys/libtool
-           pacman -S msys/autoconf
-           pacman -S msys/automake-wrapper
-        fi
+
         fetch "$ROSWELL_REPO/archive/$ROSWELL_BRANCH.tar.gz" "$ROSWELL_TARBALL_PATH"
         extract -z "$ROSWELL_TARBALL_PATH" "$ROSWELL_DIR"
         cd $ROSWELL_DIR
