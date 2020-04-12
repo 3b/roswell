@@ -228,8 +228,8 @@ case "$LISP" in
         ros use $LISP
         ;;
     *)
-        ros install $LISP;
-        ros use $LISP
+        log "ros install $LISP";
+        log "ros use $LISP"
         ;;
 esac
 
