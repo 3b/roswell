@@ -111,6 +111,7 @@ if which sudo 2>&1 >/dev/null; then
 fi
 
 if uname -s | grep -E "MSYS|MINGW" >/dev/null; then
+    echo "::add-path::$ROSWELL_INSTALL_DIR/bin"
     export PATH=$ROSWELL_INSTALL_DIR/bin:$PATH
 fi
 
