@@ -207,6 +207,7 @@ case "$LISP" in
         ;;
 esac
 
+log "ros"
 echo "Installing $LISP..."
 case "$LISP" in
     clisp)
@@ -228,8 +229,8 @@ case "$LISP" in
         ros use $LISP
         ;;
     *)
-        log "ros install $LISP";
-        log "ros use $LISP"
+        log "ros -v install $LISP";
+        log "ros -v use $LISP"
         ;;
 esac
 
