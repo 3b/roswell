@@ -143,6 +143,11 @@ install_roswell_bin () {
 
 install_roswell_src () {
     if ! which ros >/dev/null; then
+        if uname -s | grep -E "MSYS|MINGW" >/dev/null; then
+           pacman -S msys/libtool
+           pacman -S msys/autoconf
+           pacman -S msys/automake-wrapper
+        fi
         fetch "$ROSWELL_REPO/archive/$ROSWELL_BRANCH.tar.gz" "$ROSWELL_TARBALL_PATH"
         extract -z "$ROSWELL_TARBALL_PATH" "$ROSWELL_DIR"
         cd $ROSWELL_DIR
@@ -151,11 +156,7 @@ install_roswell_src () {
         echo "sbcl-bin-version-uri	0	$ROSWELL_PLATFORMHTML_BASE" >> ~/.roswell/config;
         echo "sbcl-bin-uri	0	$ROSWELL_SBCL_BIN_URI" >> ~/.roswell/config;
 
-        if uname -s | grep -E "MSYS|MINGW" >/dev/null; then
-           pacman -S msys/libtool
-           pacman -S msys/autoconf
-           pacman -S msys/automake-wrapper
-        fi
+
         ./configure --prefix=$ROSWELL_INSTALL_DIR
         make
         if [ -w "$ROSWELL_INSTALL_DIR" ]; then
