@@ -113,9 +113,6 @@ fi
 install_roswell_bin () {
     if uname -s | grep -E "MSYS_NT|MINGW64" >/dev/null; then
         if [ $ROSWELL_BRANCH = release ]; then
-            pacman -S msys/libtool
-            pacman -S msys/autoconf
-            pacman -S msys/automake-wrapper
             fetch "https://github.com/roswell/roswell/releases/download/v$ROSWELL_RELEASE_VERSION/roswell_${ROSWELL_RELEASE_VERSION}_amd64.zip" /tmp/roswell.zip
             unzip /tmp/roswell.zip -d /tmp/ >/dev/null
             mkdir -p $ROSWELL_INSTALL_DIR/bin
@@ -124,9 +121,6 @@ install_roswell_bin () {
         fi
     elif uname -s | grep -E "MINGW32" >/dev/null; then
         if [ $ROSWELL_BRANCH = release ]; then
-            pacman -S msys/libtool
-            pacman -S msys/autoconf
-            pacman -S msys/automake-wrapper
             fetch "https://github.com/roswell/roswell/releases/download/v$ROSWELL_RELEASE_VERSION/roswell_${ROSWELL_RELEASE_VERSION}_i686.zip" /tmp/roswell.zip
             unzip /tmp/roswell.zip -d /tmp/ >/dev/null
             mkdir -p $ROSWELL_INSTALL_DIR/bin
@@ -156,6 +150,12 @@ install_roswell_src () {
         mkdir -p ~/.roswell
         echo "sbcl-bin-version-uri	0	$ROSWELL_PLATFORMHTML_BASE" >> ~/.roswell/config;
         echo "sbcl-bin-uri	0	$ROSWELL_SBCL_BIN_URI" >> ~/.roswell/config;
+
+        if uname -s | grep -E "MSYS|MINGW" >/dev/null; then
+           pacman -S msys/libtool
+           pacman -S msys/autoconf
+           pacman -S msys/automake-wrapper
+        fi
         ./configure --prefix=$ROSWELL_INSTALL_DIR
         make
         if [ -w "$ROSWELL_INSTALL_DIR" ]; then
