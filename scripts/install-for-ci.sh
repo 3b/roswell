@@ -239,8 +239,9 @@ case "$LISP" in
         ros use $LISP
         ;;
     *)
-        log "ros -L sbcl-bin install $LISP";
-        log "ros -L sbcl-bin use $LISP"
+        export LISP=sbcl-bin
+        log "ros -L sbcl-bin install $REALLISP";
+        log "ros -L sbcl-bin use $REALLISP"
         #ls -R $ROSWELL_DIR
         #ls -R $ROSWELL_INSTALL_DIR
         ;;
