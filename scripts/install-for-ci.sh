@@ -209,8 +209,10 @@ case "$LISP" in
 esac
 
 echo "run ros first time, LISP=$LISP..."
-log "ros -v -v"
+log "ros"
 echo "first run done"
+log "ros -v -v install sbcl-bin"
+log "ros -v -v use sbcl-bin"
 echo "Installing $LISP..."
 case "$LISP" in
     clisp)
@@ -234,8 +236,8 @@ case "$LISP" in
     *)
         log "ros -v -v install $LISP";
         log "ros -v -v use $LISP"
-        log "ls -R $ROSWELL_DIR"
-        log "ls -R $ROSWELL_INSTALL_DIR"
+        ls -R $ROSWELL_DIR
+        ls -R $ROSWELL_INSTALL_DIR
         ;;
 esac
 
