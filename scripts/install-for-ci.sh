@@ -239,10 +239,10 @@ case "$LISP" in
         ros use $LISP
         ;;
     *)
-        log "ros install $LISP";
-        log "ros use $LISP"
-        ls -R $ROSWELL_DIR
-        ls -R $ROSWELL_INSTALL_DIR
+        log "ros -L sbcl-bin install $LISP";
+        log "ros -L sbcl-bin use $LISP"
+        #ls -R $ROSWELL_DIR
+        #ls -R $ROSWELL_INSTALL_DIR
         ;;
 esac
 
