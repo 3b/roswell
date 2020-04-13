@@ -239,8 +239,8 @@ case "$LISP" in
         ros use $LISP
         ;;
     *)
-        log "ros -v -v install $LISP";
-        log "ros -v -v use $LISP"
+        log "ros install $LISP";
+        log "ros use $LISP"
         ls -R $ROSWELL_DIR
         ls -R $ROSWELL_INSTALL_DIR
         ;;
