@@ -244,8 +244,8 @@ case "$REALLISP" in
         #ls -R $ROSWELL_INSTALL_DIR
         ;;
 esac
-echo "set lisp back to $REALLISP"
-export LISP=$REALLISP
+#echo "set lisp back to $REALLISP"
+#export LISP=$REALLISP
 
 log "ros version"
 log "ros quicklisp.dist=$ROSWELL_QUICKLISP_DIST_URI setup"
@@ -258,7 +258,7 @@ fi
 ros -e '(format t "~&~A ~A up and running! (ASDF ~A)~2%"
                 (lisp-implementation-type)
                 (lisp-implementation-version)
-                #+asdf(asdf:asdf-version) #-asdf "not required")' || exit 1
+                #+asdf(asdf:asdf-version) #-asdf "not required")' -q  || exit 1
 
 # Setup ASDF source regisry
 if [ "$LOCALAPPDATA" ]; then
