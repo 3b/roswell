@@ -170,6 +170,7 @@ install_roswell_src () {
 
 if ! which ros >/dev/null; then
     echo "Installing Roswell..."
+    mkdir -p ~/.roswell
     install_roswell_bin
     install_roswell_src
     echo "Roswell has been installed."
