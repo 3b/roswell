@@ -245,6 +245,7 @@ case "$LISP" in
         log "ros use $REALLISP"
         #ls -R $ROSWELL_DIR
         #ls -R $ROSWELL_INSTALL_DIR
+        export LISP=$REALLISP
         ;;
 esac
 
