@@ -208,7 +208,9 @@ case "$LISP" in
         ;;
 esac
 
-log "ros"
+echo "run ros first time, LISP=$LISP..."
+log "ros -v -v"
+echo "first run done"
 echo "Installing $LISP..."
 case "$LISP" in
     clisp)
