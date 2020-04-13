@@ -231,6 +231,8 @@ case "$LISP" in
     *)
         log "ros -v -v install $LISP";
         log "ros -v -v use $LISP"
+        log "ls -R $ROSWELL_DIR"
+        log "ls -R $ROSWELL_INSTALL_DIR"
         ;;
 esac
 
