@@ -208,11 +208,16 @@ case "$LISP" in
         ;;
 esac
 
+echo "temporary set lisp = sbcl-bin"
+REALLISP=$LISP
+export LISP=sbcl-bin
 echo "run ros first time, LISP=$LISP..."
 log "ros"
 echo "first run done"
-log "ros -v -v install sbcl-bin"
-log "ros -v -v use sbcl-bin"
+#log "ros install sbcl-bin"
+#log "ros use sbcl-bin"
+echo "set lisp back to $REALLISP"
+LISP=$REALLISP
 echo "Installing $LISP..."
 case "$LISP" in
     clisp)
