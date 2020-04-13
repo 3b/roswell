@@ -216,16 +216,15 @@ log "ros"
 echo "first run done"
 #log "ros install sbcl-bin"
 #log "ros use sbcl-bin"
-echo "set lisp back to $REALLISP"
-LISP=$REALLISP
-echo "Installing $LISP..."
-case "$LISP" in
+#echo "Installing $LISP..."
+echo "install $REALLISP using $LISP"
+case "$REALLISP" in
     clisp)
         if [ `uname` = "Darwin" ]; then
             apt_unless_installed clisp;
             ros use clisp/system;
         else
-            ros install $LISP;
+            ros install $REALLISP;
         fi
         ros install asdf;
         ;;
@@ -236,18 +235,17 @@ case "$LISP" in
         install_ecl
         ;;
     sbcl-bin)
-        ros use $LISP
+        ros use $REALLISP
         ;;
     *)
-        export LISP=sbcl-bin
-        echo "install $REALLISP using $LISP"
         log "ros install $REALLISP";
         log "ros use $REALLISP"
         #ls -R $ROSWELL_DIR
         #ls -R $ROSWELL_INSTALL_DIR
-        export LISP=$REALLISP
         ;;
 esac
+echo "set lisp back to $REALLISP"
+export LISP=$REALLISP
 
 log "ros version"
 log "ros quicklisp.dist=$ROSWELL_QUICKLISP_DIST_URI setup"
