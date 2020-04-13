@@ -59,7 +59,9 @@ install_script () {
 }
 
 apt_installed_p () {
-    if [ `uname` = "Darwin" ]; then
+    if uname -s | grep -E "MSYS|MINGW" >/dev/null; then
+        true
+    elif [ `uname` = "Darwin" ]; then
         if brew info "$1" |grep installed;then
             false
         else
@@ -244,8 +246,6 @@ case "$REALLISP" in
         #ls -R $ROSWELL_INSTALL_DIR
         ;;
 esac
-#echo "set lisp back to $REALLISP"
-#export LISP=$REALLISP
 
 log "ros version"
 log "ros quicklisp.dist=$ROSWELL_QUICKLISP_DIST_URI setup"
@@ -254,6 +254,10 @@ if [ "$ROSWELL_LATEST_ASDF" ]; then
     echo "Installing the latest ASDF..."
     ros install asdf
 fi
+
+echo "set lisp back to $REALLISP"
+export LISP=$REALLISP
+
 
 ros -e '(format t "~&~A ~A up and running! (ASDF ~A)~2%"
                 (lisp-implementation-type)
