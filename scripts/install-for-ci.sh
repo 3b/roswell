@@ -206,7 +206,7 @@ case "$LISP" in
         apt_unless_installed libc6-i386
         apt_unless_installed libc6-dev-i386
         apt_unless_installed gcc-multilib
-        ros config set ccl.bit 32
+#        ros config set ccl.bit 32
         ;;
     # 'sbcl-bin' is the default
     "")
