@@ -180,6 +180,9 @@ else
     echo "Detected Roswell."
 fi
 
+
+REALLISP=$LISP
+
 case "$LISP" in
     alisp|allegro)
 	apt_unless_installed libc6-i386
@@ -211,7 +214,6 @@ case "$LISP" in
 esac
 
 echo "temporary set lisp = sbcl-bin"
-REALLISP=$LISP
 export LISP=sbcl-bin
 echo "run ros first time, LISP=$LISP..."
 log "ros"
@@ -239,6 +241,11 @@ case "$REALLISP" in
     sbcl-bin)
         ros use $REALLISP
         ;;
+    ccl32)
+        log "ros install ccl-bin";
+        ros use ccl-bin;
+        ros config set ccl.bit 32
+ 	;;
     *)
         log "ros install $REALLISP";
         log "ros use $REALLISP"
