@@ -199,6 +199,7 @@ case "$LISP" in
     # 'ccl' is an alias for 'ccl-bin'
     ccl)
         LISP=ccl-bin
+	REALLISP=ccl-bin
         ;;
     ccl32)
         LISP=ccl-bin
@@ -245,6 +246,7 @@ case "$REALLISP" in
         log "ros install ccl-bin";
         ros use ccl-bin;
         ros config set ccl.bit 32
+	REALLISP = ccl-bin
  	;;
     *)
         log "ros install $REALLISP";
