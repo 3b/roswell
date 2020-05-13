@@ -246,7 +246,7 @@ case "$REALLISP" in
         log "ros install ccl-bin";
         ros use ccl-bin;
         ros config set ccl.bit 32
-	REALLISP = ccl-bin
+	REALLISP=ccl-bin
  	;;
     *)
         log "ros install $REALLISP";
